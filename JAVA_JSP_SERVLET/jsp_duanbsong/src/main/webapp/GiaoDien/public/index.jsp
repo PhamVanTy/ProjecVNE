@@ -4,14 +4,13 @@
 <%@ include file="/GiaoDien/public/inc/header.jsp"%>
 <div class="content_resize">
 	<div class="mainbar">
-	<!-- test lần 1 của git  -->
 		<%
 		SongsDAO songDao = new SongsDAO();
 		ArrayList<Songs> listSong = (ArrayList) request.getAttribute("list");
 		if(listSong != null && listSong.size() > 0){
 			int j = 0;
-		for (Songs objSong : listSong) {
-			j++;
+			for (Songs objSong : listSong) {
+				j++;
 		%>
 		<div class="article">
 			<h2>
