@@ -4,6 +4,7 @@
 <%@ include file="/GiaoDien/public/inc/header.jsp"%>
 <div class="content_resize">
 	<div class="mainbar">
+	<!-- test lần 1 của git  -->
 		<%
 		SongsDAO songDao = new SongsDAO();
 		ArrayList<Songs> listSong = (ArrayList) request.getAttribute("list");
