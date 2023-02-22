@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;controller.ShowUpLoadFile&apos; to &apos;ShowUploadFile&apos;&#x0D;&#x0A;- Original project: &apos;jspd4_baitap3&apos;&#x0D;&#x0A;- Original element: &apos;controller.ShowUpLoadFile&apos;&#x0D;&#x0A;- Renamed element: &apos;controller.ShowUploadFile&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ShowUpLoadFile&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;controller{ShowUpLoadFile.java[ShowUpLoadFile" matchStrategy="1" name="ShowUploadFile" qualified="false" references="true" similarDeclarations="false" stamp="1672035335513" textual="false" version="1.0"/>
+</session>

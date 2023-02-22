@@ -1,0 +1,34 @@
+package controller.admin;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.dao.SongsDAO;
+
+public class AdminDeleteSongController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private SongsDAO dao;
+    public AdminDeleteSongController() {
+        super();
+        dao = new SongsDAO();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int dsid = 0;
+		try {
+			dsid = Integer.parseInt(request.getParameter("dsid"));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/admin/song?error=1");
+		}		
+		dao.deleteSong(dsid);
+		response.sendRedirect(request.getContextPath() + "/admin/songs");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.contain{
+	margin: 50px;
+}
+h2{
+	padding: 8px 0;
+	background-color: aquamarine;
+	width: 500px;
+	text-align: center;
+}
+a{
+	width: 80px;
+    background-color: aqua;
+    padding: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.table{
+	width: 500px;
+}
+.table td, .table th{
+	border: 1px solid #ddd;
+ 	padding: 8px;
+ 	text-align: center;
+}

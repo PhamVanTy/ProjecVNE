@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;jspd6_baitap3/src/main/webapp/youtube.html&apos; to &apos;youtube.jsp&apos;" description="Rename resource &apos;youtube.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/youtube.html" name="youtube.jsp" stamp="1672240054607" updateReferences="true"/>
+</session>

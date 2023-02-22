@@ -1,0 +1,43 @@
+1676274833357	Copy file
+1676274841785	Copy file
+1676275162643	Rename resource 'validate_public.js'
+1676276790764	Copy file
+1676277650107	Rename type 'AuthLoginController'
+1676427597982	Rename type 'AddCatAdminController'
+1676427673688	Rename type 'AddSongAdminController'
+1676427726431	Rename type 'AddUserAdminController'
+1676427810479	Rename type 'DeleteCatAdminController'
+1676427901787	Rename type 'DeleteContactAdminController'
+1676427963138	Rename type 'DeleteSongAdminController'
+1676428010965	Rename type 'DeleteUserAdminController'
+1676428069164	Rename type 'EditCatAdminController'
+1676428094478	Rename type 'EditContactAdminController'
+1676428123739	Rename type 'EditSongAdminController'
+1676428150710	Rename type 'EditUserAdminController'
+1676428177145	Rename type 'IndexAdminCatController'
+1676428213043	Rename type 'IndexAdminController'
+1676428236920	Rename type 'IndexAdminSongController'
+1676428266937	Rename type 'IndexAdminUserController'
+1676428285551	Rename type 'IndexContactsAdminController'
+1676428309848	Rename type 'IndexPublicController'
+1676428327447	Rename type 'IndexCatPublicController'
+1676428351202	Rename type 'DetailPublicController'
+1676428372312	Rename type 'ContactPublicController'
+1676430320518	Copy file
+1676444643795	Rename resource 'validate_aurth.js'
+1676444658962	Rename resource 'aurth'
+1676444684581	Rename type 'AurthLoginController'
+1676444754699	Rename type 'AurthLogoutController'
+1676445265191	Delete element
+1676464901099	Copy file
+1676464906822	Copy file
+1676464911522	Copy file
+1676465007760	Rename resource 'validate_admin.js'
+1676515698004	Rename resource 'index.html'
+1676515738671	Delete element
+1676515741840	Delete element
+1676515747338	Rename resource 'index.jsp'
+1676515753391	Move 'main_bt_2.js' to 'js'
+1676516222992	Rename resource 'styles.css'
+1676516225960	Move 'styles_signup.css' to 'auth'
+1676516294128	Rename resource 'main_bt_2.js'

@@ -1,0 +1,19 @@
+1671504388350	Rename package 'baitap2.controller'
+1671504745861	Rename type 'CauChao'
+1671504753966	Rename type 'ShowCauChaoControl'
+1671506680949	Rename package 'baitap2'
+1671506694053	Rename package 'baitap3'
+1671506709761	Rename package 'baitap3.contrller'
+1671507787751	Rename resource 'baitapluyen.jsp'
+1671510881805	Move 'style_bt5.css' to 'webapp'
+1671533686024	Rename resource 'style_bt5.css'
+1671544003125	Delete element
+1671545022997	Delete element
+1671545032133	Rename type 'Computer2'
+1671612945486	Rename resource 'SoLuong.jsp'
+1671873846061	Rename resource 'ShowNumberComputer.java'
+1671888037077	Rename resource 'BaiTapLuyen.jsp'
+1671894282726	Move 'style_showlist.css' to 'baitapluyen'
+1671894292294	Copy file
+1671894420380	Delete element
+1671894695682	Move 'style_showlist.css' to 'webapp'

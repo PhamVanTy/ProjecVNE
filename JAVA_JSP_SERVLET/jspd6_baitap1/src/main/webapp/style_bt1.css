@@ -1,0 +1,39 @@
+@charset "UTF-8";
+form{
+	width: 500px;
+	background-color: #C7EEEB;
+	margin: 50px auto;
+	line-height: 20px;
+}
+form h2{
+	background-color: #00A19C;
+    text-align: center;
+    padding: 5px;
+    font-weight: 600;
+    font-size: revert;
+}
+form p{
+	padding: 10px;
+}
+#id, #name, #num, #price{
+	width:150px;
+}
+.btn{
+	border: 1px solid black;
+	background-color: white;
+	text-decoration: none;
+	color: black;
+	border-radius: 3px;
+	padding: 2px;
+}
+.error{
+	color: red;
+}
+.table{
+	width: 500px;
+}
+.ajax-data .table td, .ajax-data .table th{
+	border: 1px solid #ddd;
+ 	padding: 8px;
+ 	text-align: center;
+}

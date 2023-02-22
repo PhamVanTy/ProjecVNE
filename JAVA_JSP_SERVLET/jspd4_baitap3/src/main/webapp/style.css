@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.contain{
+	width: 350px;
+	margin: 50px auto;
+	border: 1px solid black;
+}
+.contain h2{
+	background-color: #00A19C;
+	padding: 10px;
+}
+.contain p{
+	padding: 10px;
+}

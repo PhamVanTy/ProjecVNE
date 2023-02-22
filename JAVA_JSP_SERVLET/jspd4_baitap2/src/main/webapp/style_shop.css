@@ -1,0 +1,25 @@
+@charset "UTF-8";
+form{
+	width: 300px;
+	background-color: #C7EEEB;
+	margin: 50px auto;
+}
+form h2{
+	background-color: #00A19C;
+    text-align: center;
+    padding: 5px;
+    font-weight: 600;
+    font-size: revert;
+}
+form p{
+	position: relative;
+	padding: 10px;
+}
+.id, .name, .num, .price{
+	right: 30px;
+	position: absolute;
+}
+.submit{
+	left: 140px;
+	margin-top: -13px;
+}

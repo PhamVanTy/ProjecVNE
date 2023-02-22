@@ -1,0 +1,27 @@
+1673403725815	Rename resource 'contact.html'
+1673403732053	Rename resource 'cat.html'
+1673403751268	Rename resource 'index.html'
+1673403764471	Rename resource 'single.html'
+1673403823943	Rename resource 'add.html'
+1673403828174	Rename resource 'cat.html'
+1673403832538	Rename resource 'index.html'
+1673403836887	Rename resource 'login.html'
+1673403841133	Rename resource 'news.html'
+1673423888483	Rename type 'DetailCatController'
+1673425577807	Rename type 'Contact'
+1673442300529	Delete element
+1673455108908	Rename type 'IndexPrivateController'
+1673455199230	Rename type 'AddCatPrivateController'
+1673455583995	Rename package 'controller.view'
+1673455603523	Move compilation unit
+1673455610057	Move compilation unit
+1673455618425	Move compilation unit
+1673455627970	Move compilation unit
+1673455630983	Move compilation unit
+1673455635108	Move compilation unit
+1673455642128	Move compilation unit
+1673456259958	Copy file
+1673456588683	Rename type 'AddCatAdminController'
+1673456640386	Rename type 'ShowAddCatAdminController'
+1673456721854	Rename resource 'add_loaibds.jsp'
+1673576916487	Copy file
