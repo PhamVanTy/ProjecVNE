@@ -258,6 +258,7 @@ public class SongsDAO {
 		}
 		return 0;
 	}
+	
 	public int getTotalSongByIDCat(int idCat) {
 		conn = dbConnectionUtil.getConnection();
 		String sql = "SELECT COUNT(*) FROM songs WHERE cat_id="+idCat;
@@ -280,6 +281,7 @@ public class SongsDAO {
 		}
 		return 0;
 	}
+	
 	public ArrayList<Songs> pagingSong(int offset) {
 		ArrayList<Songs> list = new ArrayList<>();
 		String sql = "SELECT * FROM songs ORDER BY id DESC LIMIT ?, ?";
@@ -336,9 +338,10 @@ public class SongsDAO {
 		}
 		return list;
 	}
+	
 	public ArrayList<Songs> searchByName(String name) {
 		ArrayList<Songs> list = new ArrayList<>();
-		String sql = "SELECT * FROM `songs` WHERE name LIKE ?;";
+		String sql = "SELECT * FROM `songs` WHERE name LIKE ?";
 		conn = dbConnectionUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
@@ -381,13 +384,68 @@ public class SongsDAO {
 			}
 		}
 	}
+
+	public int getTotalSearchByName(String nameSearch) {
+		String sql = "SELECT COUNT(*) totalByName FROM songs WHERE name LIKE ?";
+		conn = dbConnectionUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, "%" + nameSearch + "%");
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				return rs.getInt("totalByName");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+	
+	public ArrayList<Songs> pagingSongByName(String name, int offset){
+		ArrayList<Songs> list = new ArrayList<>();
+		String sql = "SELECT * FROM songs WHERE name LIKE ? ORDER BY id DESC LIMIT ?, ?";
+		conn = dbConnectionUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, "%" + name + "%");
+			pst.setInt(2, offset);
+			pst.setInt(3, DefineUtil.NUMBER_PER_PAGE);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				list.add(new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
+						rs.getString("detail_text"), rs.getString("date_create"), rs.getString("picture"),
+						rs.getInt("counter"), rs.getInt("cat_id")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;		
+	}
 	
 	public static void main(String[] args) {
 //		SongsDAO dao = new SongsDAO();
-//		
-//		ArrayList<Songs> list = dao.editItem(2);
+//		ArrayList<Songs> list = dao.pagingSongByID(4, 3);
 //		for (Songs songs : list) {
+//			
 //			System.out.println(songs);
 //		}
+//		int count = dao.getTotalSearchByName("tìm");
+//		System.out.println(count);
 	}
 }

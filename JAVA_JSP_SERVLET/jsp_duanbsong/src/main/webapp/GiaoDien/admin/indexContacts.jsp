@@ -54,8 +54,10 @@
                                         <th>Tên</th>  
                                         <th>Email</th> 
                                         <th>Website</th>   
-                                      	<th>Message</th>                                
+                                      	<th>Message</th>   
+                                      	<%if("admin".equals(userLogin.getUsername())){ %>                              
                                         <th width="160px">Chức năng</th>
+                                        <%} %>
                                     </tr>
                                 </thead>
                                 <tbody>

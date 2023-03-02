@@ -24,13 +24,17 @@
                           <%
                           String name = request.getParameter("name");
                           String error = request.getParameter("error");
-								if("1".equals(error)){%>
-									<p style="color: red">Tên đã tồn tại</p>
-								<%}	 %>
+                          if("1".equals(error)){
+								out.print("<p style=\"color: red;\">Có lỗi khi thêm.</p>");
+							}
+                          if("4".equals(error)){
+								out.print("<p style=\"color: red;\">Tên danh mục không hợp lệ.</p>");
+							}
+							%>
                                 <form action="" role="form" method="post" id="form">
                                     <div class="form-group">
                                         <label for="name">Tên thể loại nhạc</label>
-                                        <input type="text" id="name" value="<%if(name != null) out.print(name); %>" name="name" class="form-control" />
+                                        <input type="text" id="name" value="<%if(name != null && !"4".equals(error)) out.print(name); %>" name="name" class="form-control" />
                                     </div>                                                                                                  
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Thêm</button>
                                 </form>

@@ -30,7 +30,15 @@ public class AdminAddCatController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
+		String inputName = request.getParameter("name");
+		String name = "";
+		if(AuthUtil.isName(inputName)) {
+			name = inputName;
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addCat.jsp?error=4");
+			rd.forward(request, response);
+			return;
+		}
 		CatergoriesDAO newCatDAO = new CatergoriesDAO();
 		Categories objNewCat = new Categories(0, name);
 		ArrayList<Categories> listC = newCatDAO.getItems();

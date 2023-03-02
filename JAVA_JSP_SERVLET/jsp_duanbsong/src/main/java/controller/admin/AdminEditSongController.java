@@ -28,7 +28,6 @@ public class AdminEditSongController extends HttpServlet {
         super();
         dao = new SongsDAO();
         catDao = new CatergoriesDAO();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,8 +65,22 @@ public class AdminEditSongController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/songs?error=1");
 			return;
 		}	
+		String checkBox = request.getParameter("checkbox");
+//		System.out.println(checkBox);
 		
-		String sname = request.getParameter("name");		 
+		String sname = request.getParameter("name");
+		String name = "";
+		if(AuthUtil.isName(sname)) {
+			name = sname;
+		}else {
+			CatergoriesDAO catDao = new CatergoriesDAO();
+			ArrayList<Categories> listCat = catDao.getItems();
+			request.setAttribute("listCat", listCat);
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editSong.jsp?error=4");
+			rd.forward(request, response);
+			return;
+		}
+		
 		String spreview = request.getParameter("preview");
 		String sdetail = request.getParameter("detail");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -87,14 +100,23 @@ public class AdminEditSongController extends HttpServlet {
 		
 		String fileName = FileUtil.getName(filePath);
 		String spicture = "";
-		if(fileName.isEmpty()) {
-			spicture = song.getPicture();
+		if(fileName.isEmpty()) {			
+			if(song.getPicture() != null && "yes".equals(checkBox)) {
+				String oldFilePathName = dirParthName + File.separator + song.getPicture();
+				File oldFile = new File(oldFilePathName);
+				if(oldFile.exists()) {
+					oldFile.delete();
+				}
+			} else {
+				spicture = song.getPicture();
+			}
 		}else {
 			spicture = FileUtil.rename(fileName);
-		}					
+		}
+		
 		//đường dẫn file
 		String filePathName = dirParthName + File.separator + spicture;
-		Songs item = new Songs(id, sname, spreview, sdetail, date, spicture, 0, scategory);
+		Songs item = new Songs(id, name, spreview, sdetail, date, spicture, 0, scategory);
 		if(dao.editItem(item) > 0) {
 			if(!fileName.isEmpty()) {
 				String oldFilePathName = dirParthName + File.separator + song.getPicture();

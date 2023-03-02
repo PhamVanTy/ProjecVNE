@@ -1,8 +1,9 @@
 package controller.admin;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,9 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import model.bean.Users;
 import model.dao.UsersDAO;
 import util.AuthUtil;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class AuthSignupController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

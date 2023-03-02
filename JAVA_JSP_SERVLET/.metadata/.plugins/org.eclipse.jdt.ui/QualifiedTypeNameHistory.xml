@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="model.dao.CatDAO"/>
-    <fullyQualifiedTypeName name="model.dao.NewsDAO"/>
-    <fullyQualifiedTypeName name="model.bean.TinTuc"/>
-    <fullyQualifiedTypeName name="model.bean.DanhMucTin"/>
     <fullyQualifiedTypeName name="model.bean.FriendList"/>
     <fullyQualifiedTypeName name="model.dao.FriendListDAO"/>
     <fullyQualifiedTypeName name="model.dao.ContentDAO"/>
@@ -38,11 +34,9 @@
     <fullyQualifiedTypeName name="java.io.Console"/>
     <fullyQualifiedTypeName name="model.bean.Contacts"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.Part"/>
-    <fullyQualifiedTypeName name="model.dao.CatergoriesDAO"/>
     <fullyQualifiedTypeName name="org.apache.catalina.User"/>
     <fullyQualifiedTypeName name="util.FileUtil"/>
     <fullyQualifiedTypeName name="util.StringUtil"/>
-    <fullyQualifiedTypeName name="util.AuthUtil"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="util.DefineUtil"/>
@@ -51,13 +45,19 @@
     <fullyQualifiedTypeName name="model.bean.Categories"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.Cookie"/>
     <fullyQualifiedTypeName name="model.dao.UsersDAO"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="model.bean.Users"/>
     <fullyQualifiedTypeName name="jakarta.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="model.dao.SongsDAO"/>
-    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
-    <fullyQualifiedTypeName name="model.bean.Songs"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="model.dao.CatergoriesDAO"/>
+    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.util.file.Matcher"/>
+    <fullyQualifiedTypeName name="java.text.Normalizer"/>
+    <fullyQualifiedTypeName name="util.AuthUtil"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="model.bean.Songs"/>
+    <fullyQualifiedTypeName name="model.dao.SongsDAO"/>
 </qualifiedTypeNameHistroy>

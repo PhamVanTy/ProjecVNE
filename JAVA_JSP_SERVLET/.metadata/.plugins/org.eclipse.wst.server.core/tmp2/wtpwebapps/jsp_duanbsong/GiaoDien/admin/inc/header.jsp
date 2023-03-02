@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AdminCP | VinaEnter Edu</title>
     <!-- BOOTSTRAP STYLES-->
+    <script src="<%=request.getContextPath()%>/GiaoDien/ckeditor/ckeditor.js"></script>
+	<script src="<%=request.getContextPath()%>/GiaoDien/admin/assets/js/jquery-3.2.1.js"></script>
+	<script src="<%=request.getContextPath()%>/GiaoDien/admin/assets/js/jquery.validate.min.js"></script>
     <link href="<%=request.getContextPath()%>/GiaoDien/admin/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
     <link href="<%=request.getContextPath()%>/GiaoDien/admin/assets/css/font-awesome.css" rel="stylesheet" />

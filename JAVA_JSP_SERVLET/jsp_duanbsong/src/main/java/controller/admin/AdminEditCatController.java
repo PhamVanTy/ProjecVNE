@@ -62,7 +62,15 @@ public class AdminEditCatController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Users userLogin = (Users) session.getAttribute("userLogin");
 		if("admin".equals(dao.getUserByID(userLogin.getId_user()).getUsername())) {
-			String nameCat = request.getParameter("editCatName");
+			String inputName = request.getParameter("editCatName");
+			String nameCat = "";
+			if(AuthUtil.isName(inputName)) {
+				nameCat = inputName;
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editCat.jsp?error=4");
+				rd.forward(request, response);
+				return;
+			}
 			Categories objCatEdit = new Categories(cid, nameCat);
 			CatergoriesDAO editCatDAO = new CatergoriesDAO();
 			if(editCatDAO.editItem(objCatEdit) > 0) {

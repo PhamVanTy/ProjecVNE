@@ -5,7 +5,11 @@
 <div class="content_resize">
 	<div class="mainbar">
 		<%
-		SongsDAO songDao = new SongsDAO();
+		String error = request.getParameter("error");
+		 if("1".equals(error)){
+        	out.print("<p style=\"color: red;\">Không có bài hát bạn cần tìm.</p>");
+        }
+		
 		ArrayList<Songs> listSong = (ArrayList) request.getAttribute("list");
 		if(listSong != null && listSong.size() > 0){
 			int j = 0;
@@ -35,14 +39,7 @@
 		<%
 			int endPage = (Integer) request.getAttribute("endPage");
 			int index = (Integer) request.getAttribute("index");
-			int total = (Integer) request.getAttribute("total");
-			int num = 0;
-			if (index < endPage) {
-				num = (index - 1) * DefineUtil.NUMBER_PER_PAGE + DefineUtil.NUMBER_PER_PAGE;
-			} else {
-				num = total;
-			}
-			
+			int total = (Integer) request.getAttribute("total");			
 			%>
 		<p class="pages">
 			<small>Trang <%=index%> của <%=endPage%></small>		

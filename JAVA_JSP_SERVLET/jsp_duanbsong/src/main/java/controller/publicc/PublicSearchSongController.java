@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.bean.Songs;
 import model.dao.SongsDAO;
+import util.DefineUtil;
 
 public class PublicSearchSongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,23 +21,34 @@ public class PublicSearchSongController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		String nameSearch = request.getParameter("editbox_search");
-		ArrayList<Songs> listSong = dao.searchByName(nameSearch);
-		if(listSong.size() > 0) {
-			request.setAttribute("listSong", listSong);
+		try {
+			String editbox_search = request.getParameter("editbox_search");
+			int total = dao.getTotalSearchByName(editbox_search);			
+			int endPage = 0;
+			endPage = (int) Math.ceil((float)total / DefineUtil.NUMBER_PER_PAGE);
+			int index = 1;	
+			try {
+				index = Integer.parseInt(request.getParameter("indexSearch"));	
+			} catch (NumberFormatException e) {
+			}	
+			int offset = (index - 1) * DefineUtil.NUMBER_PER_PAGE;
+			ArrayList<Songs> list = dao.pagingSongByName(editbox_search, offset);
+			request.setAttribute("listSearch", list); 
+			request.setAttribute("totalSearch", total);
+			request.setAttribute("endPageSearch", endPage);
+			request.setAttribute("indexSearch", index);	
+			request.setAttribute("editbox_search", editbox_search);	
 			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/public/indexSearch.jsp");
 			rd.forward(request, response);
 			return;
-		}else {
-			response.sendRedirect(request.getContextPath() + "/public/search?error=1");
+		} catch (Exception e) {
+			response.sendRedirect(request.getContextPath() + "/public/not-found");
 			return;
-		}		
+		} 	
 	}
 
 }

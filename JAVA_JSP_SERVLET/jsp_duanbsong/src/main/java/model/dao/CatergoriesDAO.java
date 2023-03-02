@@ -19,6 +19,7 @@ public class CatergoriesDAO {
 	public CatergoriesDAO() {
 		dbConnectionUtil = new DBConnectionUtil();
 	}
+	
 	public ArrayList<Categories> getItems() {
 		ArrayList<Categories> cat = new ArrayList<>();
 		conn = dbConnectionUtil.getConnection();
@@ -43,6 +44,7 @@ public class CatergoriesDAO {
 		}
 		return cat;
 	}
+	
 	public void addItem(Categories objNewCat) {
 		conn = dbConnectionUtil.getConnection();
 		String sql = "INSERT INTO categories (id, name) VALUES (?, ?)";
@@ -62,6 +64,7 @@ public class CatergoriesDAO {
 			}
 		}
 	}
+	
 	public int editItem(Categories objCatEdit) {
 		int result = 0;
 		conn = dbConnectionUtil.getConnection();
@@ -83,6 +86,7 @@ public class CatergoriesDAO {
 		}
 		return result;
 	}
+	
 	public Categories getCatByID(int cid) {
 		conn = dbConnectionUtil.getConnection();
 		String sql = "SELECT * FROM categories WHERE id=?";
@@ -107,13 +111,14 @@ public class CatergoriesDAO {
 		return null;
 	}
 	
-	public void deleteCat(int dcid) {
+	public int deleteCat(int dcid) {
+		int result = 0;
 		conn = dbConnectionUtil.getConnection();
 		String sql = "DELETE FROM categories WHERE id=?";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dcid);
-			pst.executeUpdate();
+		 	result = pst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -124,5 +129,6 @@ public class CatergoriesDAO {
 				e.printStackTrace();
 			}		
 		}
+		return result;
 	}
 }

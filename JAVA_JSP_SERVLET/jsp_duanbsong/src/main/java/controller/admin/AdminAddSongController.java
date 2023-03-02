@@ -47,7 +47,20 @@ public class AdminAddSongController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/songs?error=1");	
 			return;
 		}
-		String name = request.getParameter("name");
+		String inputName = request.getParameter("name");
+		String name = "";
+//		String name = myName(inputName);
+		if(AuthUtil.isName(inputName)) {
+			name = inputName;
+		}else {
+			CatergoriesDAO catDao = new CatergoriesDAO();
+			ArrayList<Categories> listCat = catDao.getItems();
+			request.setAttribute("listCat", listCat);
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addSong.jsp?error=4");
+			rd.forward(request, response);
+			return;
+		}
+		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String date = df.format(new Date());
 		String preview = request.getParameter("preview");
@@ -64,7 +77,7 @@ public class AdminAddSongController extends HttpServlet {
 		Songs song = new Songs(0, name, preview, detail, date, picture, 0, id_cat);
 		SongsDAO songDAO = new SongsDAO();
 		ArrayList<Songs> listS = songDAO.getItems();
-		if(checkNameSong(listS, name)) {
+		if(AuthUtil.checkNameSong(listS, name)) {
 			songDAO.addSong(song);
 			if(!fileName.isEmpty()) {
 				filePath.write(filePathName);
@@ -80,13 +93,12 @@ public class AdminAddSongController extends HttpServlet {
 		}
 	}
 
-	public boolean checkNameSong(ArrayList<Songs> list, String name) {
-		for (Songs songs : list) {
-			if(songs.getSongName().equalsIgnoreCase(name)) {
-				return false;
-			}
-		}		
-		return true;
+	
+	
+	
+	public static void main(String[] args) {
+//		String name = myName("chúng ta của hiện tại");
+//		System.out.println(name);
 	}
 }
 

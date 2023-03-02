@@ -65,7 +65,14 @@ public class AdminEditUserController extends HttpServlet {
 		if("admin".equals(dao.getUserByID(userLogin.getId_user()).getUsername()) || id == userLogin.getId_user()) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("pass");
-			String fullname = request.getParameter("fullname");
+			String fullnameInput = request.getParameter("fullname");
+			String fullName = "";
+			if(AuthUtil.isName(fullnameInput)) {
+				fullName = username;
+			}else {		
+				response.sendRedirect(request.getContextPath() + "/admin/users?error=6");				
+				return;
+			}
 			Users obj = dao.getUserByID(id);
 			if(obj == null) {
 				response.sendRedirect(request.getContextPath() + "/admin/users?error=1");
@@ -74,7 +81,7 @@ public class AdminEditUserController extends HttpServlet {
 			if(password.isEmpty()) {
 				password = obj.getPassword();
 			}
-			Users user = new Users(id, username, password, fullname);
+			Users user = new Users(id, username, password, fullName);
 			if(dao.editUser(user) > 0) {
 				response.sendRedirect(request.getContextPath() + "/admin/users?mes=2");
 				return;

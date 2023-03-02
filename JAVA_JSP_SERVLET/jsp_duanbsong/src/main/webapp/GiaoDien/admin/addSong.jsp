@@ -31,12 +31,16 @@
                          			String detail = request.getParameter("detail");
                          			ArrayList<Categories> listCat = (ArrayList<Categories>)request.getAttribute("listCat");
 									String error = request.getParameter("error");
-									if("1".equals(error)){%>
-										<p style="color: red">Tên bài hát đã tồn tại</p>
-								<%	} %>
+									if("1".equals(error)){
+										out.print("<p style=\"color: red;\">Tên bài hát đã tồn tại</p>");
+									}
+									if("4".equals(error)){
+		                            	out.print("<p style=\"color: red;\">Tên bài hát không hợp lệ.</p>");
+		                            }
+									%>
                                     <div class="form-group">
                                         <label for="name">Tên bài hát</label>
-                                        <input type="text" id="name" value="<%if(name != null) out.print(name); %>" name="name" class="form-control" />
+                                        <input type="text" id="name" value="<%if(name != null && !"4".equals(error)) out.print(name); %>" name="name" class="form-control" />
                                     </div>                                  
                                     <div class="form-group">
                                         <label for="category">Danh mục bài hát</label>
@@ -51,7 +55,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="picture">Hình ảnh</label>
-                                        <input type="file" name="picture" value="" />
+                                      <!--  <input type="file" name="picture" value="" onchange="chooseFile(this)" 
+                                        	accept="image/gif, image/jpeg, image/png, image/jpg, image/raw"/> -->
+                                        <input type="file" name="picture" value="" id="img" 
+                                        	accept="image/gif, image/jpeg, image/png, image/jpg, image/raw"/>                                          	                                    
+                                        <label id="selectedBanner"></label>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label for="preview">Mô tả</label>
@@ -62,7 +71,9 @@
                                         <textarea id="detail" class="form-control ckeditor" id="detail" rows="5" name="detail"><%if(detail != null) out.print(detail); %></textarea>
                                         <br><label for="detail" class="error"></label>
                                     </div>
-                                    <button type="submit" name="submit" class="btn btn-success btn-md">Thêm</button>
+                                    <label id="show-message"></label>
+                                    <button name="submit" type="submit" class="btn btn-success btn-md">Thêm</button>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -75,6 +86,48 @@
     </div>
     <!-- /. PAGE INNER  -->
 </div>
+<script>
+<!--
+	function chooseFile(inputFile) {
+		if(inputFile.files && inputFile.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#image').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(inputFile.files[0]);
+		}
+	}
+	-->
+	var selDiv = "";
+    var storedFiles = [];
+    $(document).ready(function () {
+      $("#img").on("change", handleFileSelect);
+      selDiv = $("#selectedBanner");
+    });
+
+    function handleFileSelect(e) {
+      var files = e.target.files;
+      var filesArr = Array.prototype.slice.call(files);
+      filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+          return;
+        }
+        storedFiles.push(f);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var html =
+            '<img src="' +
+            e.target.result +
+            "\" data-file='" +
+            f.name +
+            "alt='Category Image' height='200px' width='200px'>";
+          selDiv.html(html);
+        };
+        reader.readAsDataURL(f);
+      });
+    }
+</script>
 <script>
     document.getElementById("song").classList.add('active-menu');
 </script>

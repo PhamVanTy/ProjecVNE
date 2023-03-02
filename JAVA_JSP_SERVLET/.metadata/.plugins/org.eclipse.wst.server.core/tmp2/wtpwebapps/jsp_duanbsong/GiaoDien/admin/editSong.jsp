@@ -27,7 +27,10 @@
                                   String error = request.getParameter("error");
 									if("1".equals(error)){
 										out.print("<p style=\"color: red;\">Có lỗi khi sữa.</p>");
-									}									
+									}
+									if("4".equals(error)){
+										out.print("<p style=\"color: red;\">Tên không hợp lệ.</p>");
+									}
 									String name = request.getParameter("name");
                                  	String cat = request.getParameter("category");                               
                                  	String preview = request.getParameter("preview");
@@ -45,7 +48,7 @@
                                   %>                               
                                     <div class="form-group">
                                         <label for="name">Tên bài hát</label>
-                                        <input type="text" id="name" value="<%if(name != null) out.print(name); %>" name="name" class="form-control" />
+                                        <input type="text" id="name" value="<%if(name != null && !"4".equals(error)) out.print(name); %>" name="name" class="form-control" />
                                     </div>     
                                                                 
                                     <div class="form-group">
@@ -59,11 +62,15 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="picture">Hình ảnh</label>
-                                        <% if(!picture.isEmpty()){ %>
-                                        <img alt="" src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=picture%>" width="200" height="215">
+                                    <% if(!picture.isEmpty()){ %>
+                                        <label for="picture">Hình ảnh cũ: </label>                                        
+                                        <img alt="" src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=picture%>" width="200" height="215"><br/>    
+                                        <label style="color: red;">Bạn có muốn xóa bên hình ở trên không: </label> <br/>                          
+                                        <input type="radio" name="checkbox" value="yes"/> Có  <input <% if(!picture.isEmpty()) out.print("checked"); %> type="radio" name="checkbox" value="no"/> Không<br/>
                                         <%} %>
-                                        <input value="" type="file" name="picture" />
+                                        <br/><label>Chọn ảnh mới nếu muốn:</label>
+                                        <input value="" type="file" name="picture" id="img" />
+                                         <label id="selectedBanner"></label>
                                     </div>
                                     <div class="form-group">
                                         <label for="preview">Mô tả</label>
@@ -86,6 +93,48 @@
     </div>
     <!-- /. PAGE INNER  -->
 </div>
+<script>
+<!--
+	function chooseFile(inputFile) {
+		if(inputFile.files && inputFile.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#image').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(inputFile.files[0]);
+		}
+	}
+	-->
+	var selDiv = "";
+    var storedFiles = [];
+    $(document).ready(function () {
+      $("#img").on("change", handleFileSelect);
+      selDiv = $("#selectedBanner");
+    });
+
+    function handleFileSelect(e) {
+      var files = e.target.files;
+      var filesArr = Array.prototype.slice.call(files);
+      filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+          return;
+        }
+        storedFiles.push(f);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var html =
+            '<img src="' +
+            e.target.result +
+            "\" data-file='" +
+            f.name +
+            "alt='Category Image' height='200px' width='200px'>";
+          selDiv.html(html);
+        };
+        reader.readAsDataURL(f);
+      });
+    }
+</script>
 <script>
     document.getElementById("song").classList.add('active-menu');
 </script>

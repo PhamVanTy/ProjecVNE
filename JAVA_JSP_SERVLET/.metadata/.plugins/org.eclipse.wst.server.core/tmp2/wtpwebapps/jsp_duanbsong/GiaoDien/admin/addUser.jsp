@@ -25,17 +25,19 @@
 		                         	String name = request.getParameter("name");
                                 	String fullName = request.getParameter("fullname");
 		                          	String error = request.getParameter("error");
-									if("1".equals(error)){
-										%>
-										<p style="color: red;">Tên đã tồn tại.</p>
-								<%}
+									if("1".equals(error)){									
+										out.print("<p style=\"color: red;\">Tên đã tồn tại.</p>");
+									}
+									if("4".equals(error)){
+										out.print("<p style=\"color: red;\">Tên user không hợp lệ.</p>");									
+									}
 									
 								 %>
                                 <form action="" role="form" method="post" id="form">
                                 
                                     <div class="form-group">
                                         <label for="name">Username</label>
-                                        <input type="text" id="username" value="<%if(name != null) out.print(name); %>" name="name" class="form-control" />
+                                        <input type="text" id="username" value="<%if(name != null && !"4".equals(error)) out.print(name); %>" name="name" class="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Password</label>
@@ -47,7 +49,7 @@
                                     </div> 
                                     <div class="form-group">
                                         <label for="name">Fullname</label>
-                                        <input type="text" id="fullname" value="<%if(fullName != null) out.print(fullName); %>" name="fullname" class="form-control" />
+                                        <input type="text" id="fullname" value="<%if(fullName != null && !"4".equals(error)) out.print(fullName); %>" name="fullname" class="form-control" />
                                     </div>   
                                                                                                                                                                                                        
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Thêm</button>

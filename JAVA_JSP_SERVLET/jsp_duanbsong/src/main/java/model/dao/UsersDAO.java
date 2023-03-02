@@ -19,6 +19,7 @@ public class UsersDAO {
 	public UsersDAO() {
 		dbConnectionUtil = new DBConnectionUtil();
 	}
+	
 	public ArrayList<Users> getUsers(){
 		ArrayList<Users> listUser = new ArrayList<>();
 		conn = dbConnectionUtil.getConnection();
@@ -43,6 +44,7 @@ public class UsersDAO {
 		}
 		return listUser;
 	}
+	
 	public void delUser(int did) {
 		conn = dbConnectionUtil.getConnection();
 		String sql = "DELETE FROM users WHERE id=?";
@@ -62,6 +64,7 @@ public class UsersDAO {
 			
 		}
 	}
+	
 	public int editUser(Users user) {
 		int result = 0;
 		conn = dbConnectionUtil.getConnection();
@@ -85,6 +88,7 @@ public class UsersDAO {
 		}
 		return result;
 	}
+	
 	public Users getUserByID(int id) {
 		conn = dbConnectionUtil.getConnection();
 		String sql = "SELECT * FROM users WHERE id=?";
@@ -108,6 +112,7 @@ public class UsersDAO {
 		}
 		return null;
 	}
+	
 	public void addUser(Users user) {		
 		conn = dbConnectionUtil.getConnection();
 		String sql = "INSERT INTO users (id, username, password, fullname) VALUES (?, ?, ?, ?)";
@@ -129,6 +134,7 @@ public class UsersDAO {
 			}	
 		}
 	}
+	
 	public Users existUser(String username, String password) {
 		Users user = null;
 		conn = dbConnectionUtil.getConnection();
@@ -147,6 +153,7 @@ public class UsersDAO {
 			e.printStackTrace();
 		} finally {
 			try {
+				rs.close();
 				pst.close();
 				conn.close();
 			} catch (SQLException e) {

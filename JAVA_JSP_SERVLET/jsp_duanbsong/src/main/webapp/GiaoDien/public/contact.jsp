@@ -21,7 +21,10 @@
 				int error = Integer.parseInt(request.getParameter("error"));
 				if(error == 1){
 					out.print("<p style=\"color: red\">Tên liên hệ trùng.</p>");				
-				}				
+				}	
+				if(error == 2){
+					out.print("<p style=\"color: red\">Tên liên hệ không đúng định dạng.</p>");				
+				}
 			}
       		if(request.getParameter("mes") != null){
 				int mes = Integer.parseInt(request.getParameter("mes"));

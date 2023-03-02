@@ -27,11 +27,11 @@ public class PublicIndexCatController extends HttpServlet {
 		int plcid = 0;
 		try {
 			plcid  = Integer.parseInt(request.getParameter("plcid"));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/public/not-found");
 			return;
 		}	
-		ArrayList<Songs> listSongByCat = dao.getItemsByIDCat(plcid);
+
 		Categories objCat = catDao.getCatByID(plcid);
 		if(objCat == null) {
 			response.sendRedirect(request.getContextPath() + "/public/cats?error=1");
@@ -42,22 +42,23 @@ public class PublicIndexCatController extends HttpServlet {
 		int endPage = (int) Math.ceil((float)totalByIDCat / DefineUtil.NUMBER_PER_PAGE);
 		int index = 1;	
 		try {
-			index = Integer.parseInt(request.getParameter("index"));	
+			index = Integer.parseInt(request.getParameter("index"));
 		} catch (NumberFormatException e) {
-
+			
 		}
+		System.out.println(totalByIDCat);
 		if(index > endPage || index < 1) {
 			index = 1;
 		}
 		int offset = (index - 1) * DefineUtil.NUMBER_PER_PAGE;
 		ArrayList<Songs> listSongByIDInPage = dao.pagingSongByID(plcid, offset);
-		request.setAttribute("list", listSongByIDInPage);
+		
+		request.setAttribute("listSongByIDInPage", listSongByIDInPage);
 		request.setAttribute("index", index);
 		
 		request.setAttribute("totalByIDCat", totalByIDCat);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("objCat", objCat);
-		request.setAttribute("listSongByCat", listSongByCat);
 		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/public/cat.jsp");
 		rd.forward(request, response);
 	}

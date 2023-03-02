@@ -45,6 +45,7 @@
                             if("2".equals(error)){
                             	out.print("<p style=\"color: red;\">Có lỗi khi xóa.</p>");
                             }
+                            
 							if(request.getParameter("mes") != null){
 								int mes = Integer.parseInt(request.getParameter("mes"));
 								if(mes == 1){
@@ -66,7 +67,9 @@
                                         <th>Thể loại nhạc</th>
                                         <th>Lượt đọc</th>
                                         <th>Hình ảnh</th>
+                                        <%if("admin".equals(userLogin.getUsername())){ %> 
                                         <th width="160px">Chức năng</th>
+                                        <%} %>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,7 +94,9 @@
 	                                        
 	                                        <td class="center"><%=objSong.getCounter() %></td>
 	                                        <td class="center">
+	                                        <%if(!objSong.getPicture().isEmpty()){ %>
 												<img width="200px" height="200px" src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=objSong.getPicture()%>" alt="<%=objSong.getSongName()%>"/>
+	                                       <%} %>
 	                                        </td>
 	                                        <%if("admin".equals(userLogin.getUsername())){ %> 
 	                                        <td class="center">

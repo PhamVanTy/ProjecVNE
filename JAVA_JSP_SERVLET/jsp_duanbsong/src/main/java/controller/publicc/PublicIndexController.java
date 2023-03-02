@@ -29,7 +29,6 @@ public class PublicIndexController extends HttpServlet {
 		try {
 			index = Integer.parseInt(request.getParameter("index"));	
 		} catch (NumberFormatException e) {
-			// TODO: handle exception
 		}	
 		if(index > endPage || index < 1) {
 			index = 1;

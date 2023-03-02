@@ -20,9 +20,14 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                             <div class="row">
+                            <%if("admin".equals(userLogin.getUsername())){ %> 
                                 <div class="col-sm-6">
                                     <a href="<%=request.getContextPath()%>/admin/cats/add-cat" class="btn btn-success btn-md">Thêm</a>
                                 </div>
+                                <%}else{ %>
+                                <div class="col-sm-6">                                   
+                                </div>
+                                <%} %>
                                 <div class="col-sm-6" style="text-align: right;">
                                     <form method="post" action="">
                                         <input type="submit" name="search" value="Tìm kiếm" class="btn btn-warning btn-sm" style="float:right" />
@@ -35,23 +40,31 @@
                             String error = request.getParameter("error");
                             if("3".equals(error)){
                             	out.print("<p style=\"color: red;\">Không được phân quyền.</p>");
+                            }if("2".equals(error)){
+                            	out.print("<p style=\"color: red;\">Có lỗi khi xóa.</p>");
                             }
                             	if(request.getParameter("mes") != null){
                             		int mes = Integer.parseInt(request.getParameter("mes"));
                             		if(mes == 1){ 
-                            			out.print("<p style=\"color: red;\">Thêm thành công.</p>");                          	
-                            		}                   											
+                            			out.print("<p style=\"color: green;\">Thêm thành công.</p>");                          	
+                            		}
+                            		
 									if(mes == 2){
-										out.print("<p style=\"color: red;\">Sửa thành công.</p>");
+										out.print("<p style=\"color: green;\">Sửa thành công.</p>");
 									}
+									if(mes == 3){ 
+                            			out.print("<p style=\"color: green;\">Xóa thành công.</p>");                          	
+                            		} 
                             	}
 									%>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên thể loại nhạc</th>                                   
+                                        <th>Tên thể loại nhạc</th>  
+                                        <%if("admin".equals(userLogin.getUsername())){ %>                                  
                                         <th width="160px">Chức năng</th>
+                                        <%} %>
                                     </tr>
                                 </thead>
                                 <tbody>

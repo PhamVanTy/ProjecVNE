@@ -25,13 +25,21 @@
                                    		<%
                                    		String error = request.getParameter("error");
     									if("1".equals(error)){
-    										out.print("<p style=\"color: red;\">Có lỗi khi sửa.</p>");
+    										out.print("<p style=\"color: red;\">Có lỗi khi sữa.</p>");
     									}
-                                        	Categories obj = (Categories)request.getAttribute("objCatEdit");                                       	
+    									if("4".equals(error)){
+    										out.print("<p style=\"color: red;\">Tên danh mục không hợp lệ.</p>");
+    									}
+    									
+                                        	String nameCat = request.getParameter("editCatName"); 
+                                        	Categories objCat = (Categories)request.getAttribute("objCatEdit");
+                                        	if(objCat != null){
+                                        		nameCat = objCat.getCatName();
+                                        	}
                                         %>                                   
                                     <div class="form-group">
                                         <label for="name">Tên thể loại nhạc</label>                                       
-                                        <input type="text" id="name" value="<%=obj.getCatName()%>" name="editCatName" class="form-control" />
+                                        <input type="text" id="name" value="<%if(nameCat !=null && !"4".equals(error)) out.print(nameCat);%>" name="editCatName" class="form-control" />
                                     </div>  
                                                                                                                                     
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Lưu</button>

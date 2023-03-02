@@ -32,10 +32,10 @@ public class AdminDeleteSongController extends HttpServlet {
 		}
 		
 		if(dao.deleteSong(dsid) > 0) {
-			final String dirPathName = request.getServletContext().getRealPath("/GiaoDien/admin/assets/img");
+			final String dirParthName = request.getServletContext().getRealPath("/GiaoDien/admin/assets/img");
 			String picture = song.getPicture();
 			if(!picture.isEmpty()) {
-				String filePathName = dirPathName + File.separator + picture;
+				String filePathName = dirParthName + File.separator + picture;
 				File file = new File(filePathName);
 				if(file.exists()) {
 					file.delete();

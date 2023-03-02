@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.bean.Contacts;
 import model.dao.ContactsDAO;
+import util.AuthUtil;
 
 public class PublicContactController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,15 @@ public class PublicContactController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
+		String inName = request.getParameter("name");
+		String name = "";
+		if(AuthUtil.isName(inName)) {
+			name = inName;
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/public/contact.jsp?error=2");
+			rd.forward(request, response);
+			return;
+		}
 		String email = request.getParameter("email");
 		String website = request.getParameter("website");
 		String mess = request.getParameter("message");	

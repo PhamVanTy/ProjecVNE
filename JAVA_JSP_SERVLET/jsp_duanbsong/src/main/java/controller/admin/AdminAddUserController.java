@@ -50,10 +50,27 @@ public class AdminAddUserController extends HttpServlet {
 			return;
 		}
 		String username = request.getParameter("name");
+		String uName = "";
+		if(AuthUtil.isName(username)) {
+			uName = username;
+		}else {
+		
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addUser.jsp?error=4");
+			rd.forward(request, response);
+			return;
+		}
 		String pass = request.getParameter("password");
-		String fullname = request.getParameter("fullname");
+		String fullnameInput = request.getParameter("fullname");
+		String fullName = "";
+		if(AuthUtil.isName(fullnameInput)) {
+			fullName = username;
+		}else {		
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addUser.jsp?error=4");
+			rd.forward(request, response);
+			return;
+		}
 		UsersDAO dao = new UsersDAO();
-		Users user = new Users(0, username, pass, fullname);
+		Users user = new Users(0, uName, pass, fullName);
 		ArrayList<Users> listU = dao.getUsers();
 		if(checkName(listU, username)) {
 			dao.addUser(user);

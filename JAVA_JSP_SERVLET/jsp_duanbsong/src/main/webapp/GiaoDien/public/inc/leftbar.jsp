@@ -6,15 +6,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <div class="searchform">
-  <form id="formsearch" name="formsearch" method="post" action="<%=request.getContextPath()%>/public/search">
+  <form id="formsearch" name="formsearch" method="get" action="<%=request.getContextPath()%>/public/search">
     <span>
-   <%
-   	String nameSearch = request.getParameter("editbox_search");
-   
-   %>
-    <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="<%if(nameSearch != null) out.print(nameSearch); %>" type="text" placeholder="Tìm kiếm bài hát" />
+    <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="" type="text" placeholder="Tìm kiếm bài hát" />
     </span>
-    <input name="button_search" src="<%=request.getContextPath()%>/GiaoDien/public/images/search.jpg" class="button_search" type="image" />
+    <input  name="button_search" src="<%=request.getContextPath()%>/GiaoDien/public/images/search.jpg" class="button_search" type="image" />
   </form>
 </div>
 <div class="clr"></div>
@@ -23,8 +19,8 @@
   <div class="clr"></div>
   <ul class="sb_menu">
   <%
-  	CatergoriesDAO dao = new CatergoriesDAO();
-	  ArrayList<Categories> listCat = dao.getItems();
+  	CatergoriesDAO catDao = new CatergoriesDAO();
+	  ArrayList<Categories> listCat = catDao.getItems();
 	int temp = 0;	
 	if(request.getParameter("plcid") != null){
 		temp = Integer.parseInt(request.getParameter("plcid"));
@@ -41,8 +37,8 @@
   <div class="clr"></div>
   <ul class="ex_menu">
   <%
-  	SongsDAO listNewSongDao = new SongsDAO();
-  	ArrayList<Songs> listNewSong = listNewSongDao.getNewItems();
+  	SongsDAO songDao = new SongsDAO(); 
+  	ArrayList<Songs> listNewSong = songDao.getNewItems();
   	for(Songs objNewSong : listNewSong){
   %>
     <li><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=objNewSong.getIdSong()%>"><%=objNewSong.getSongName()%></a><br />

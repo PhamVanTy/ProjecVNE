@@ -4,18 +4,18 @@
 <%@ include file="/GiaoDien/public/inc/header.jsp" %>
 <div class="content_resize">
   <div class="mainbar">
-    <div class="article">  
-    <%    
+  <%    
     String error = request.getParameter("error");
     if("1".equals(error)){
     	out.print("<p style=\"color: red;\">ID không tồn tại.</p>");
     }
     Categories objCatByID = (Categories)request.getAttribute("objCat");
     %> 
+    <div class="article">     
 		<h1><%=objCatByID.getCatName()%></h1>
     </div>
     <%
-    ArrayList<Songs> listSongByCat = (ArrayList) request.getAttribute("list");
+    ArrayList<Songs> listSongByCat = (ArrayList) request.getAttribute("listSongByIDInPage");
     if(listSongByCat != null && listSongByCat.size() > 0){
     	int i =0;
    		 for(Songs obj : listSongByCat){
@@ -41,13 +41,15 @@
       	int endPage = (Integer)request.getAttribute("endPage");
  		int index = (Integer)request.getAttribute("index");
  		int total = (Integer)request.getAttribute("totalByIDCat");
+ 		if(listSongByCat != null && listSongByCat.size() > 0){
       %>
     <p class="pages"><small>Trang <%=index%> của <%=endPage%></small>
    <%	
 	for(int i = 1; i <= endPage; i++){      %>
-		<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/public/cats?index=<%=i%>&plcid=<%=objCatByID.getIdCat()%>"><%=i%></a> 
+		<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/public/cats?plcid=<%=objCatByID.getIdCat()%>&index=<%=i%>"><%=i%></a> 
 	<%}%>
-    <a href="<%=request.getContextPath()%>/public/cats?index=<%=index < endPage ? (index+1) : endPage%>&&plcid=<%=objCatByID.getIdCat()%>">&raquo;</a></p>
+    <a href="<%=request.getContextPath()%>/public/cats?plcid=<%=objCatByID.getIdCat()%>&index=<%=index < endPage ? (index+1) : endPage%>">&raquo;</a></p>
+  <%} %>
   </div>
   <div class="sidebar">
       <%@ include file="/GiaoDien/public/inc/leftbar.jsp" %>

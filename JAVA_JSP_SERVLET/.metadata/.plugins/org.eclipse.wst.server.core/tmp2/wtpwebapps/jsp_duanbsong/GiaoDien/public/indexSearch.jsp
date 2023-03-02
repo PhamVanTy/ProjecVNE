@@ -5,16 +5,10 @@
 <div class="content_resize">
 	<div class="mainbar">
 		<%
-		String error = request.getParameter("error");
-		 if("1".equals(error)){
-         	out.print("<p style=\"color: red;\">Không có bài hát bạn cần tìm.</p>");
-         }
-		SongsDAO songDao = new SongsDAO();
-		ArrayList<Songs> listSong = (ArrayList) request.getAttribute("listSong");
-		if(listSong != null && listSong.size() > 0){
-			int i = 0;
-		for (Songs objSong : listSong) {
-			i++;
+			ArrayList<Songs> listS = (ArrayList)request.getAttribute("listSearch");
+		int j = 1;
+			for(Songs objSong : listS){
+				
 		%>
 		<div class="article">
 			<h2>
@@ -22,7 +16,7 @@
 					href="<%=request.getContextPath()%>/public/detail?dtid=<%=objSong.getIdSong()%>"
 					title="Đổi thay"><%=objSong.getSongName()%></a>
 			</h2>
-			<p class="infopost">Ngày đăng: <%=objSong.getDate_create()%>. Lượt xem: <%=objSong.getCounter()%><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=objSong.getIdSong()%>" class="com"><span><%=i%></span></a></p>
+			<p class="infopost">Ngày đăng: <%=objSong.getDate_create()%>. Lượt xem: <%=objSong.getCounter()%><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=objSong.getIdSong()%>" class="com"><span><%=j%></span></a></p>
 			<div class="clr"></div>
 			<div class="img">
 				<img src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=objSong.getPicture()%>" width="177" height="213" alt="<%=objSong.getSongName()%>" class="fl" />
@@ -34,8 +28,21 @@
 			<div class="clr"></div>
 		</div>
 		<%
-		}}
-		%>		
+			j++;
+		}
+		int indexS = (int)request.getAttribute("indexSearch");
+		int totalS = (int)request.getAttribute("totalSearch");
+		int endPageS = (int)request.getAttribute("endPageSearch");
+		String nameSave = (String)request.getAttribute("editbox_search");
+		%>	
+		<p class="pages">
+			<small>Trang <%=indexS %> của <%=endPageS %></small>		
+			<%	
+             	for(int i = 1; i <= endPageS; i++){           	
+             %>
+			<a class="<%=indexS==i?"active":""%>" href="<%=request.getContextPath()%>/public/search?indexSearch=<%=i%>&editbox_search=<%=nameSave%>"><%=i%></a> 
+			<%}%>			
+			<a href="<%=request.getContextPath()%>/public/search?indexSearch=<%=(indexS < endPageS) ? (indexS+1) : endPageS%>&editbox_search=<%=nameSave%>">&raquo;</a>	
 	</div>
 	<div class="sidebar">
 		<%@ include file="/GiaoDien/public/inc/leftbar.jsp"%>
