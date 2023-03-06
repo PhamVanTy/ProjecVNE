@@ -19,18 +19,22 @@ public class PublicDetailController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dtId = 0;
+		int id = 0;
 		try {
-		 dtId =	Integer.parseInt(request.getParameter("dtid"));
+		 id =	Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/public/not-found");
 			return;
 		}
-		if(dtId > 0) {
-			dao.increaseCounter(dtId);
+		if(id > 0) {
+			dao.increaseCounter(id);
 		}
-	    Songs song = dao.getSongByID(dtId);	    
-      	Songs objS = dao.getOtherSong(dtId);
+	    Songs song = dao.getSongByID(id);
+	    if(song == null) {
+	    	response.sendRedirect(request.getContextPath() + "/public/not-found");
+			return;
+	    }
+      	Songs objS = dao.getOtherSong(id);
       	request.setAttribute("objS", objS);
 		request.setAttribute("song", song);
 		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/public/detail.jsp");

@@ -45,7 +45,7 @@ public class AdminIndexSongController extends HttpServlet {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("list", list);
 		request.setAttribute("index", index);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/indexSong.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/song/indexSong.jsp");
 		rd.forward(request, response);
 	}
 

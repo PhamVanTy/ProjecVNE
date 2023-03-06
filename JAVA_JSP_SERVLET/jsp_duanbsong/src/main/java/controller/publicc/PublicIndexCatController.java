@@ -24,20 +24,20 @@ public class PublicIndexCatController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int plcid = 0;
+		int id = 0;
 		try {
-			plcid  = Integer.parseInt(request.getParameter("plcid"));
+			id  = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/public/not-found");
 			return;
 		}	
 
-		Categories objCat = catDao.getCatByID(plcid);
+		Categories objCat = catDao.getCatByID(id);
 		if(objCat == null) {
 			response.sendRedirect(request.getContextPath() + "/public/cats?error=1");
 			return;
 		}
-		int totalByIDCat = dao.getTotalSongByIDCat(plcid);
+		int totalByIDCat = dao.getTotalSongByIDCat(id);
 		
 		int endPage = (int) Math.ceil((float)totalByIDCat / DefineUtil.NUMBER_PER_PAGE);
 		int index = 1;	
@@ -46,16 +46,13 @@ public class PublicIndexCatController extends HttpServlet {
 		} catch (NumberFormatException e) {
 			
 		}
-		System.out.println(totalByIDCat);
 		if(index > endPage || index < 1) {
 			index = 1;
 		}
 		int offset = (index - 1) * DefineUtil.NUMBER_PER_PAGE;
-		ArrayList<Songs> listSongByIDInPage = dao.pagingSongByID(plcid, offset);
-		
+		ArrayList<Songs> listSongByIDInPage = dao.pagingSongByID(id, offset);		
 		request.setAttribute("listSongByIDInPage", listSongByIDInPage);
-		request.setAttribute("index", index);
-		
+		request.setAttribute("index", index);		
 		request.setAttribute("totalByIDCat", totalByIDCat);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("objCat", objCat);

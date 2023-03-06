@@ -22,12 +22,12 @@
   	CatergoriesDAO catDao = new CatergoriesDAO();
 	  ArrayList<Categories> listCat = catDao.getItems();
 	int temp = 0;	
-	if(request.getParameter("plcid") != null){
-		temp = Integer.parseInt(request.getParameter("plcid"));
+	if(request.getParameter("id") != null){
+		temp = Integer.parseInt(request.getParameter("id"));
 	}
 	  for(Categories objCat : listCat){		  
   %>
-    <li class="<%=temp==objCat.getIdCat() ? "active":""%>"><a href="<%=request.getContextPath()%>/public/cats?plcid=<%=objCat.getIdCat()%>"><%=objCat.getCatName()%></a></li>
+    <li class="<%=temp==objCat.getIdCat() ? "active":""%>"><a href="<%=request.getContextPath()%>/public/cats?id=<%=objCat.getIdCat()%>"><%=objCat.getCatName()%></a></li>
     <%} %>
   </ul>
 </div>
@@ -41,7 +41,7 @@
   	ArrayList<Songs> listNewSong = songDao.getNewItems();
   	for(Songs objNewSong : listNewSong){
   %>
-    <li><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=objNewSong.getIdSong()%>"><%=objNewSong.getSongName()%></a><br />
+    <li><a href="<%=request.getContextPath()%>/public/detail?id=<%=objNewSong.getIdSong()%>"><%=objNewSong.getSongName()%></a><br />
       <%if(objNewSong.getPreview_text().length() > 50) out.print(objNewSong.getPreview_text().substring(0, 50) + "..."); else out.print(objNewSong.getPreview_text());%></li>
     <%} %>
   </ul>

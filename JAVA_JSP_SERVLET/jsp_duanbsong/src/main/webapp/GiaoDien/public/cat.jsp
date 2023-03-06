@@ -22,13 +22,13 @@
    			 i++;
     %>
     <div class="article">
-      <h2><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=obj.getIdSong()%>" title="<%=obj.getSongName()%>"><%=obj.getSongName()%></a></h2>
-      <p class="infopost">Ngày đăng: <%=obj.getDate_create() %>. Lượt xem: <%=obj.getCounter()%> <a href="<%=request.getContextPath()%>/public/detail?dtid=<%=obj.getIdSong()%>" class="com"><span><%=i%></span></a></p>
+      <h2><a href="<%=request.getContextPath()%>/public/detail?id=<%=obj.getIdSong()%>" title="<%=obj.getSongName()%>"><%=obj.getSongName()%></a></h2>
+      <p class="infopost">Ngày đăng: <%=obj.getDate_create() %>. Lượt xem: <%=obj.getCounter()%> <a href="<%=request.getContextPath()%>/public/detail?id=<%=obj.getIdSong()%>" class="com"><span><%=i%></span></a></p>
       <div class="clr"></div>
       <div class="img"><img src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=obj.getPicture()%>" width="177" height="213" alt="<%=obj.getSongName()%>" class="fl" /></div>
       <div class="post_content">
         <p><%=obj.getPreview_text()%></p>
-        <p class="spec"><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=obj.getIdSong()%>" class="rm">Chi tiết &raquo;</a></p>
+        <p class="spec"><a href="<%=request.getContextPath()%>/public/detail?id=<%=obj.getIdSong()%>" class="rm">Chi tiết &raquo;</a></p>
       </div>
       <div class="clr"></div>
     </div>
@@ -46,9 +46,9 @@
     <p class="pages"><small>Trang <%=index%> của <%=endPage%></small>
    <%	
 	for(int i = 1; i <= endPage; i++){      %>
-		<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/public/cats?plcid=<%=objCatByID.getIdCat()%>&index=<%=i%>"><%=i%></a> 
+		<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/public/cats?id=<%=objCatByID.getIdCat()%>&index=<%=i%>"><%=i%></a> 
 	<%}%>
-    <a href="<%=request.getContextPath()%>/public/cats?plcid=<%=objCatByID.getIdCat()%>&index=<%=index < endPage ? (index+1) : endPage%>">&raquo;</a></p>
+    <a href="<%=request.getContextPath()%>/public/cats?index=<%=index < endPage ? (index+1) : endPage%>&id=<%=objCatByID.getIdCat()%>">&raquo;</a></p>
   <%} %>
   </div>
   <div class="sidebar">

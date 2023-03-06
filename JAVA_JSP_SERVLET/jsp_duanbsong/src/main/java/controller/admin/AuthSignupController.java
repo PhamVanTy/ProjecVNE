@@ -23,7 +23,7 @@ public class AuthSignupController extends HttpServlet {
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	if(AuthUtil.checkLogin(request, response)) {
-			response.sendRedirect(request.getContextPath() + "/admin/trang-chu");
+			response.sendRedirect(request.getContextPath() + "/admin");
 			return;
 		}
     	RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/auth/signup.jsp");
@@ -35,7 +35,7 @@ public class AuthSignupController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Users userLogin = (Users) session.getAttribute("userLogin");
 		if(userLogin != null) {
-			response.sendRedirect(request.getContextPath() + "/admin/trang-chu");
+			response.sendRedirect(request.getContextPath() + "/admin");
 			return;
 		}
     	String userSignup = request.getParameter("username");

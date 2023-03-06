@@ -28,7 +28,7 @@ public class AdminIndexUserController extends HttpServlet {
 		UsersDAO user = new UsersDAO();
 		ArrayList<Users> listUser = user.getUsers();
 		request.setAttribute("listUser", listUser);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/indexUser.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/indexUser.jsp");
 		rd.forward(request, response);
 	}
 

@@ -21,22 +21,22 @@ public class AdminDeleteUserController extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int did = 0;
+		int id = 0;
 		try {
-			did = Integer.parseInt(request.getParameter("did"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/users?error=1");
 			return;
 		}
 		HttpSession session = request.getSession();
 		Users userLogin = (Users) session.getAttribute("userLogin");
-		Users user = dao.getUserByID(did);
+		Users user = dao.getUserByID(id);
 		if("admin".equals(user.getUsername())) {
 			response.sendRedirect(request.getContextPath() + "/admin/users?error=5");
 			return;
 		} else {
 			if("admin".equals(userLogin.getUsername())) {
-				dao.delUser(did);
+				dao.delUser(id);
 				response.sendRedirect(request.getContextPath() + "/admin/users");
 			}else {
 				response.sendRedirect(request.getContextPath() + "/admin/users?error=5");

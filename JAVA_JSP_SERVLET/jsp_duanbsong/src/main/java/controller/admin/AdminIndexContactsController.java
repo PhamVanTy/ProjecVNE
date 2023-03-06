@@ -28,7 +28,7 @@ public class AdminIndexContactsController extends HttpServlet {
 		ContactsDAO dao = new ContactsDAO();
 		ArrayList<Contacts> listContacts = dao.getContacts();
 		request.setAttribute("listContacts", listContacts);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/indexContacts.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/contact/indexContacts.jsp");
 		rd.forward(request, response);
 	}
 

@@ -31,7 +31,7 @@ public class AdminIndexCatController extends HttpServlet {
 		CatergoriesDAO catergoriesDAO = new CatergoriesDAO();
 		ArrayList<Categories> categories = catergoriesDAO.getItems();
 		request.setAttribute("categories", categories);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/indexCat.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/indexCat.jsp");
 		rd.forward(request, response);
 	}
 

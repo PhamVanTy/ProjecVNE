@@ -43,7 +43,7 @@ public class PublicContactController extends HttpServlet {
 		ArrayList<Contacts> listContacts = dao.getContacts();
 		if(checkName(listContacts, name)) {
 			dao.addContact(obj);
-			response.sendRedirect(request.getContextPath() + "/publicc/contact?mes=1");
+			response.sendRedirect(request.getContextPath() + "/public/contact?mes=1");
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/public/contact.jsp?error=1");
 			rd.forward(request, response);

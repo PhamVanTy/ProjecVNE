@@ -19,17 +19,17 @@
 		<div class="article">
 			<h2>
 				<a
-					href="<%=request.getContextPath()%>/public/detail?dtid=<%=objSong.getIdSong()%>"
+					href="<%=request.getContextPath()%>/public/detail?id=<%=objSong.getIdSong()%>"
 					title="<%=objSong.getSongName()%>"><%=objSong.getSongName()%></a>
 			</h2>
-			<p class="infopost">Ngày đăng: <%=objSong.getDate_create()%>. Lượt xem: <%=objSong.getCounter()%><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=objSong.getIdSong()%>" class="com"><span><%=j%></span></a></p>
+			<p class="infopost">Ngày đăng: <%=objSong.getDate_create()%>. Lượt xem: <%=objSong.getCounter()%><a href="<%=request.getContextPath()%>/public/detail?id=<%=objSong.getIdSong()%>" class="com"><span><%=j%></span></a></p>
 			<div class="clr"></div>
 			<div class="img">
 				<img src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=objSong.getPicture()%>" width="177" height="213" alt="<%=objSong.getSongName()%>" class="fl" />
 			</div>
 			<div class="post_content">
 				<p><%=objSong.getPreview_text()%></p>
-				<p class="spec"><a href="<%=request.getContextPath()%>/public/detail?dtid=<%=objSong.getIdSong()%>" class="rm">Chi tiết &raquo;</a></p>
+				<p class="spec"><a href="<%=request.getContextPath()%>/public/detail?id=<%=objSong.getIdSong()%>" class="rm">Chi tiết &raquo;</a></p>
 			</div>
 			<div class="clr"></div>
 		</div>
@@ -46,10 +46,10 @@
 			<%	
              	for(int i = 1; i <= endPage; i++){           	
              %>
-			<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/public/trang-chu?index=<%=i%>"><%=i%></a> 
+			<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/public?index=<%=i%>"><%=i%></a> 
 			<%}%>
 			
-			<a href="<%=request.getContextPath()%>/public/trang-chu?index=<%=index < endPage ? (index+1) : endPage%>">&raquo;</a>
+			<a href="<%=request.getContextPath()%>/public?index=<%=index < endPage ? (index+1) : endPage%>">&raquo;</a>
 			
 		</p>
 	</div>

@@ -18,20 +18,20 @@ public class AdminDeleteSongController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dsid = 0;
+		int id = 0;
 		try {
-			dsid = Integer.parseInt(request.getParameter("dsid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/song?error=1");
 			return;
 		}
-		Songs song = dao.getSongByID(dsid);
+		Songs song = dao.getSongByID(id);
 		if(song == null) {
 			response.sendRedirect(request.getContextPath() + "/admin/songs?error=1");
 			return;
 		}
 		
-		if(dao.deleteSong(dsid) > 0) {
+		if(dao.deleteSong(id) > 0) {
 			final String dirParthName = request.getServletContext().getRealPath("/GiaoDien/admin/assets/img");
 			String picture = song.getPicture();
 			if(!picture.isEmpty()) {

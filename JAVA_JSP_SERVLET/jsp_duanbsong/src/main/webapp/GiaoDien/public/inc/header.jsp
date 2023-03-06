@@ -19,11 +19,11 @@
   <div class="header">
     <div class="header_resize">
       <div class="logo">
-        <h1><a href="<%=request.getContextPath()%>/public/trang-chu">BSong <small>Một dự án khóa JAVA tại VinaEnter Edu</small></a></h1>
+        <h1><a href="<%=request.getContextPath()%>/public">BSong <small>Một dự án khóa JAVA tại VinaEnter Edu</small></a></h1>
       </div>
       <div class="menu_nav">
         <ul class="menu_active">
-          <li><a href="<%=request.getContextPath()%>/public/trang-chu"><span>Trang chủ</span></a>
+          <li><a href="<%=request.getContextPath()%>/public"><span>Trang chủ</span></a>
           <li><a href="<%=request.getContextPath()%>/public/contact"><span>Liên hệ</span></a></li>
         </ul>
       </div>

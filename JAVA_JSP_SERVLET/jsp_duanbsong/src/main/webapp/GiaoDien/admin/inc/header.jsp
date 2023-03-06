@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/trang-chu">VinaEnter Edu</a>
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/admin">VinaEnter Edu</a>
             </div>
             <%
             	Users userLogin = (Users) session.getAttribute("userLogin");

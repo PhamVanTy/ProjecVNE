@@ -48,7 +48,7 @@ public class AdminSearchController extends HttpServlet {
 		request.setAttribute("endPageSearch", endPage);
 		request.setAttribute("indexSearch", index);	
 		request.setAttribute("nameSearch", nameSearch);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/indexSongSearch.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/song/indexSongSearch.jsp");
 		rd.forward(request, response);
 	}
 

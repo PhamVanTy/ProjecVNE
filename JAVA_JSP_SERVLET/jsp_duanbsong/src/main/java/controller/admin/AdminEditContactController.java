@@ -26,7 +26,7 @@ public class AdminEditContactController extends HttpServlet {
 		}
 		int id = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("eid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/contacts?error=1");
 			return;
@@ -37,14 +37,14 @@ public class AdminEditContactController extends HttpServlet {
 			return;
 		}
 		request.setAttribute("objContact", objContact);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editContact.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/contact/editContact.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("eid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/contacts?error=1");
 			return;
@@ -63,7 +63,7 @@ public class AdminEditContactController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/contacts?mes=2");
 			return;
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/users/editContacts.jsp?error=1");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/contact/editContacts.jsp?error=1");
 			rd.forward(request, response);
 			return;
 		}

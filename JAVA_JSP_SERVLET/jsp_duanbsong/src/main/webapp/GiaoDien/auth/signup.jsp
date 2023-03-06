@@ -43,7 +43,7 @@
 			<p>
 				<input type="submit" name="submit" value="ĐĂNG KÝ"/>
 				<input type="reset" name="reset" value="RESET" />
-				<a href="<%=request.getContextPath()%>/login"><input type="button" name="login" value="LOGIN" /></a>				
+				<a href="<%=request.getContextPath()%>/login"><input type="button" name="login" value="&lt; Back to LOGIN" /></a>				
 			</p>
 			<div class="contact">
 				<span class="fa fa-phone"></span>0905.051.720

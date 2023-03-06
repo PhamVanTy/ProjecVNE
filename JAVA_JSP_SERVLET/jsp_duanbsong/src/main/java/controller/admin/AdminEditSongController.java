@@ -37,7 +37,7 @@ public class AdminEditSongController extends HttpServlet {
 		}
 		int id = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("sid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath()+"/admin/songs?error=1");
 			return;
@@ -50,7 +50,7 @@ public class AdminEditSongController extends HttpServlet {
 		ArrayList<Categories> listCat = catDao.getItems();
 		request.setAttribute("listCat", listCat);
 		request.setAttribute("objs", song);
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editSong.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/song/editSong.jsp");
 		rd.forward(request, response);
 	}
 
@@ -58,7 +58,7 @@ public class AdminEditSongController extends HttpServlet {
 		int id = 0;
 		int scategory = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("sid"));
+			id = Integer.parseInt(request.getParameter("id"));
 			scategory = Integer.parseInt(request.getParameter("category"));
 			
 		} catch (NumberFormatException e) {
@@ -76,7 +76,7 @@ public class AdminEditSongController extends HttpServlet {
 			CatergoriesDAO catDao = new CatergoriesDAO();
 			ArrayList<Categories> listCat = catDao.getItems();
 			request.setAttribute("listCat", listCat);
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editSong.jsp?error=4");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/song/editSong.jsp?error=4");
 			rd.forward(request, response);
 			return;
 		}
@@ -132,7 +132,7 @@ public class AdminEditSongController extends HttpServlet {
 		}else {
 			ArrayList<Categories> listCat = catDao.getItems();
 			request.setAttribute("listCat", listCat);
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editSong.jsp?error=1");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/song/editSong.jsp?error=1");
 			rd.forward(request, response);
 			return;
 		}	

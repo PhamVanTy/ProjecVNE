@@ -33,7 +33,7 @@ public class AdminAddUserController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/users?error=3");
 			return;
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addUser.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/addUser.jsp");
 		rd.forward(request, response);
 	}
 
@@ -55,7 +55,7 @@ public class AdminAddUserController extends HttpServlet {
 			uName = username;
 		}else {
 		
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addUser.jsp?error=4");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/addUser.jsp?error=4");
 			rd.forward(request, response);
 			return;
 		}
@@ -65,7 +65,7 @@ public class AdminAddUserController extends HttpServlet {
 		if(AuthUtil.isName(fullnameInput)) {
 			fullName = username;
 		}else {		
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addUser.jsp?error=4");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/addUser.jsp?error=4");
 			rd.forward(request, response);
 			return;
 		}
@@ -76,7 +76,7 @@ public class AdminAddUserController extends HttpServlet {
 			dao.addUser(user);
 			response.sendRedirect(request.getContextPath() + "/admin/users?mes=1");
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addUser.jsp?error=1");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/addUser.jsp?error=1");
 			rd.forward(request, response);
 		}
 	}

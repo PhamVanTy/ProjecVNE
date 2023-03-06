@@ -23,15 +23,15 @@ public class AdminDeleteCatController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dcid = 0;
+		int id = 0;
 		try {
-			dcid = Integer.parseInt(request.getParameter("dcid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() +"/admin/cats?error=1");	
 			return;
 		}		
-		if(catDao.deleteCat(dcid) > 0) {			
-			ArrayList<Songs> listSongByIdCat = songDao.getItemsByIDCat(dcid);
+		if(catDao.deleteCat(id) > 0) {			
+			ArrayList<Songs> listSongByIdCat = songDao.getItemsByIDCat(id);
 			for (Songs song : listSongByIdCat) {
 				final String dirPathName = request.getServletContext().getRealPath("/GiaoDien/admin/assets/img");
 				String picture = song.getPicture();
@@ -43,7 +43,7 @@ public class AdminDeleteCatController extends HttpServlet {
 					}
 				}	
 			}
-			songDao.deleteSongByIDCat(dcid);
+			songDao.deleteSongByIDCat(id);
 			response.sendRedirect(request.getContextPath() +"/admin/cats?mes=3");
 			return;
 		}else {

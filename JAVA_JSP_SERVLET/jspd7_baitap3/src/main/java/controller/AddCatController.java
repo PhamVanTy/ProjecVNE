@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -7,9 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.bean.Contact;
 import model.dao.ContactDAO;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class AddCatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

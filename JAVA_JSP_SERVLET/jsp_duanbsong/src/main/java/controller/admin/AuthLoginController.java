@@ -24,7 +24,7 @@ public class AuthLoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(AuthUtil.checkLogin(request, response)) {
-			response.sendRedirect(request.getContextPath() + "/admin/trang-chu");
+			response.sendRedirect(request.getContextPath() + "/admin");
 			return;
 		}
 		//B1: get user, pass trên cookie
@@ -50,12 +50,11 @@ public class AuthLoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Users userLogin = (Users) session.getAttribute("userLogin");
 		if(userLogin != null) {
-			response.sendRedirect(request.getContextPath() + "/admin/trang-chu");
+			response.sendRedirect(request.getContextPath() + "/admin");
 			return;
 		}
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-//		System.out.println(password);
 		Users user = dao.existUser(username, password);
 		if(user != null) {	
 			session.setAttribute("userLogin", user);
@@ -68,7 +67,7 @@ public class AuthLoginController extends HttpServlet {
 			//luu uk và pk lên trình duyệt
 			response.addCookie(pk);
 			response.addCookie(uk);
-			response.sendRedirect(request.getContextPath() + "/admin/trang-chu");
+			response.sendRedirect(request.getContextPath() + "/admin");
 			return;
 		}else {
 			response.sendRedirect(request.getContextPath() + "/login?error=1");

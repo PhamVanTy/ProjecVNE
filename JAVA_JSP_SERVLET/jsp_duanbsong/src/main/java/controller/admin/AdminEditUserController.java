@@ -28,7 +28,7 @@ public class AdminEditUserController extends HttpServlet {
 		}
 		int id = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("eid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/users?error=1");
 			return;
@@ -43,7 +43,7 @@ public class AdminEditUserController extends HttpServlet {
 				return;
 			}
 			request.setAttribute("user", user);
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editUser.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/editUser.jsp");
 			rd.forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath() + "/admin/users?error=4");
@@ -55,7 +55,7 @@ public class AdminEditUserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("eid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/users?error=1");
 			return;
@@ -86,7 +86,7 @@ public class AdminEditUserController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/admin/users?mes=2");
 				return;
 			}else {
-				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/users/editUser.jsp?error=1");
+				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/user/editUser.jsp?error=1");
 				rd.forward(request, response);
 				return;
 			}

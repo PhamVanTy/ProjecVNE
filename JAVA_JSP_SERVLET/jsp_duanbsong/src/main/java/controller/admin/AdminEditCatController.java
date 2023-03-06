@@ -17,11 +17,12 @@ import java.io.IOException;
 public class AdminEditCatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsersDAO dao;
-	
+	private CatergoriesDAO catDAO;
     public AdminEditCatController() {
         super();
         // TODO Auto-generated constructor stub
         dao = new UsersDAO();
+        catDAO = new CatergoriesDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,9 +30,9 @@ public class AdminEditCatController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
-		int cid = 0;
+		int id = 0;
 		try {
-			cid = Integer.parseInt(request.getParameter("cid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/cats?error=1");
 			return;
@@ -39,11 +40,10 @@ public class AdminEditCatController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Users userLogin = (Users) session.getAttribute("userLogin");
 		if("admin".equals(dao.getUserByID(userLogin.getId_user()).getUsername())) {
-			CatergoriesDAO dao = new CatergoriesDAO();
-			Categories objCatEdit = dao.getCatByID(cid);
-//			System.out.println(objCatEdit);
+			
+			Categories objCatEdit = catDAO.getCatByID(id);
 			request.setAttribute("objCatEdit", objCatEdit);
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editCat.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/editCat.jsp");
 			rd.forward(request, response);
 		}else {
 			response.sendRedirect(request.getContextPath()+"/admin/cats?error=3");
@@ -52,13 +52,14 @@ public class AdminEditCatController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int cid = 0;
+		int id = 0;
 		try {
-			cid = Integer.parseInt(request.getParameter("cid"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/admin/cats?error=1");
 			return;
-		}		
+		}
+		
 		HttpSession session = request.getSession();
 		Users userLogin = (Users) session.getAttribute("userLogin");
 		if("admin".equals(dao.getUserByID(userLogin.getId_user()).getUsername())) {
@@ -67,17 +68,17 @@ public class AdminEditCatController extends HttpServlet {
 			if(AuthUtil.isName(inputName)) {
 				nameCat = inputName;
 			}else {
-				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editCat.jsp?error=4");
+				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/editCat.jsp?error=4");
 				rd.forward(request, response);
 				return;
 			}
-			Categories objCatEdit = new Categories(cid, nameCat);
-			CatergoriesDAO editCatDAO = new CatergoriesDAO();
-			if(editCatDAO.editItem(objCatEdit) > 0) {
+			
+			Categories objCatEdit = new Categories(id, nameCat);
+			if(catDAO.editItem(objCatEdit) > 0) {
 				response.sendRedirect(request.getContextPath()+"/admin/cats?mes=2");
 				return;
 			}else {
-				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/editCat.jsp?error=2");
+				RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/editCat.jsp?error=1");
 				rd.forward(request, response);
 				return;
 			}	

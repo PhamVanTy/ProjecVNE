@@ -25,7 +25,7 @@ public class AdminAddCatController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addCat.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/addCat.jsp");
 		rd.forward(request, response);
 	}
 
@@ -35,7 +35,7 @@ public class AdminAddCatController extends HttpServlet {
 		if(AuthUtil.isName(inputName)) {
 			name = inputName;
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addCat.jsp?error=4");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/addCat.jsp?error=4");
 			rd.forward(request, response);
 			return;
 		}
@@ -46,7 +46,7 @@ public class AdminAddCatController extends HttpServlet {
 			newCatDAO.addItem(objNewCat);
 			response.sendRedirect(request.getContextPath() + "/admin/cats?mes=1");
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/addCat.jsp?error=1");
+			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/admin/cat/addCat.jsp?error=1");
 			rd.forward(request, response);
 		}
 	}
