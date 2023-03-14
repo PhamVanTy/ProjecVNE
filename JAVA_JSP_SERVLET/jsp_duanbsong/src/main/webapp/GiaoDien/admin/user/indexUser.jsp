@@ -60,7 +60,7 @@
                                 <div class="col-sm-6" style="text-align: right;">
                                     <form method="post" action="">
                                         <input type="submit" name="search" value="Tìm kiếm" class="btn btn-warning btn-sm" style="float:right" />
-                                        <input type="search" class="form-control input-sm" placeholder="Nhập tên bài hát" style="float:right; width: 300px;" />
+                                        <input type="search" class="form-control input-sm" placeholder="Nhập tên user" style="float:right; width: 300px;" />
                                         <div style="clear:both"></div>
                                     </form><br />
                                 </div>

@@ -24,12 +24,12 @@
       <div class="menu_nav">
         <ul class="menu_active">
           <li><a href="<%=request.getContextPath()%>/public"><span>Trang chủ</span></a>
-          <li><a href="<%=request.getContextPath()%>/public/contact"><span>Liên hệ</span></a></li>
+          <li><a href="<%=request.getContextPath()%>/contact"><span>Liên hệ</span></a></li>
         </ul>
       </div>
       <div class="clr"></div>
       <div class="slider">
-        <div id="coin-slider"><a href="#"><img src="<%=request.getContextPath()%>/GiaoDien/public/images/slide1.jpg" width="935" height="307" alt="" /></a> <a href="#"><img src="images/slide2.jpg" width="935" height="307" alt="" /></a> <a href="#"><img src="images/slide3.jpg" width="935" height="307" alt="" /></a></div>
+        <div id="coin-slider"><a href="#"><img src="<%=request.getContextPath()%>/GiaoDien/public/images/slide1.jpg" width="935" height="307" alt="" /></a> <a href="#"><img src="<%=request.getContextPath()%>/GiaoDien/public/images/slide2.jpg" width="935" height="307" alt="" /></a> <a href="#"><img src="<%=request.getContextPath()%>/GiaoDien/public/images/slide3.jpg" width="935" height="307" alt="" /></a></div>
         <div class="clr"></div>
       </div>
       <div class="clr"></div>

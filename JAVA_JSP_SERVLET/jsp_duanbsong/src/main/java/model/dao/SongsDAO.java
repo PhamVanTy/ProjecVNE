@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
-
 import model.bean.Songs;
 import util.DBConnectionUtil;
 import util.DefineUtil;
@@ -36,17 +35,9 @@ public class SongsDAO {
 						rs.getInt("counter"), rs.getInt("cat_id"));
 				listSong.add(songs);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				st.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return listSong;
 	}
 
@@ -58,19 +49,19 @@ public class SongsDAO {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				Songs songs = new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
+				Songs song = new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
 						rs.getString("detail_text"), rs.getString("date_create"), rs.getString("picture"),
 						rs.getInt("counter"), rs.getInt("cat_id"));
-				listSong.add(songs);
+				listSong.add(song);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				rs.close();
 				st.close();
 				conn.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -85,26 +76,26 @@ public class SongsDAO {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				Songs songs = new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
+				Songs song = new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
 						rs.getString("detail_text"), rs.getString("date_create"), rs.getString("picture"),
 						rs.getInt("counter"), rs.getInt("cat_id"));
-				listSong.add(songs);
+				listSong.add(song);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				rs.close();
 				st.close();
 				conn.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return listSong;
 	}
 
-	public void addSong(Songs song) {	
+	public void addSong(Songs song) {
 		conn = dbConnectionUtil.getConnection();
 		String sql = "INSERT INTO songs (id, name, preview_text, detail_text, date_create, picture, counter, cat_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
@@ -118,17 +109,17 @@ public class SongsDAO {
 			pst.setInt(7, song.getCounter());
 			pst.setInt(8, song.getId_cat());
 			pst.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				pst.close();
 				conn.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	public Songs getSongByID(int sid) {
@@ -139,9 +130,10 @@ public class SongsDAO {
 			pst.setInt(1, sid);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				return new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
+				Songs song = new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
 						rs.getString("detail_text"), rs.getString("date_create"), rs.getString("picture"),
 						rs.getInt("counter"), rs.getInt("cat_id"));
+				return song;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -258,10 +250,10 @@ public class SongsDAO {
 		}
 		return 0;
 	}
-	
+
 	public int getTotalSongByIDCat(int idCat) {
 		conn = dbConnectionUtil.getConnection();
-		String sql = "SELECT COUNT(*) FROM songs WHERE cat_id="+idCat;
+		String sql = "SELECT COUNT(*) FROM songs WHERE cat_id=" + idCat;
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
@@ -281,7 +273,7 @@ public class SongsDAO {
 		}
 		return 0;
 	}
-	
+
 	public ArrayList<Songs> pagingSong(int offset) {
 		ArrayList<Songs> list = new ArrayList<>();
 		String sql = "SELECT * FROM songs ORDER BY id DESC LIMIT ?, ?";
@@ -292,24 +284,17 @@ public class SongsDAO {
 			pst.setInt(2, DefineUtil.NUMBER_PER_PAGE);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				list.add(new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
+				Songs song = new Songs(rs.getInt("id"), rs.getString("name"), rs.getString("preview_text"),
 						rs.getString("detail_text"), rs.getString("date_create"), rs.getString("picture"),
-						rs.getInt("counter"), rs.getInt("cat_id")));
+						rs.getInt("counter"), rs.getInt("cat_id"));
+				list.add(song);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return list;
 	}
-	
+
 	public ArrayList<Songs> pagingSongByID(int id, int offset) {
 		ArrayList<Songs> list = new ArrayList<>();
 		String sql = "SELECT * FROM songs WHERE cat_id=? LIMIT ?,?";
@@ -327,18 +312,10 @@ public class SongsDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return list;
 	}
-	
+
 	public ArrayList<Songs> searchByName(String name) {
 		ArrayList<Songs> list = new ArrayList<>();
 		String sql = "SELECT * FROM `songs` WHERE name LIKE ?";
@@ -354,18 +331,10 @@ public class SongsDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return list;
 	}
-	
+
 	public void increaseCounter(int id) {
 		String sql = "UPDATE songs SET counter=(counter + 1) WHERE id=?";
 		conn = dbConnectionUtil.getConnection();
@@ -375,13 +344,6 @@ public class SongsDAO {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -392,24 +354,16 @@ public class SongsDAO {
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, "%" + nameSearch + "%");
 			rs = pst.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				return rs.getInt("totalByName");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return 0;
 	}
-	
-	public ArrayList<Songs> pagingSongByName(String name, int offset){
+
+	public ArrayList<Songs> pagingSongByName(String name, int offset) {
 		ArrayList<Songs> list = new ArrayList<>();
 		String sql = "SELECT * FROM songs WHERE name LIKE ? ORDER BY id DESC LIMIT ?, ?";
 		conn = dbConnectionUtil.getConnection();
@@ -426,26 +380,15 @@ public class SongsDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
-		return list;		
+		return list;
 	}
-	
+
 	public static void main(String[] args) {
-//		SongsDAO dao = new SongsDAO();
-//		ArrayList<Songs> list = dao.pagingSongByID(4, 3);
-//		for (Songs songs : list) {
-//			
-//			System.out.println(songs);
-//		}
-//		int count = dao.getTotalSearchByName("tìm");
-//		System.out.println(count);
+		SongsDAO dao = new SongsDAO();
+		ArrayList<Songs> list = dao.getItems();
+		for (Songs songs : list) {
+			System.out.println(songs.getDate_create());
+		}
 	}
 }

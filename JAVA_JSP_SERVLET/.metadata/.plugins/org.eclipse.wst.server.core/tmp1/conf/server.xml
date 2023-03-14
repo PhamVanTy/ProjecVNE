@@ -134,8 +134,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="D:\GitHub\ProjecVNE\JAVA_JSP_SERVLET\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\GitHub\ProjecVNE\JAVA_JSP_SERVLET\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\jsp_duanbsong" path="/jsp_duanbsong" reloadable="true" source="org.eclipse.jst.jee.server:jsp_duanbsong"/></Host>
-      
+      <Context docBase="D:\GitHub\ProjecVNE\JAVA_JSP_SERVLET\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\GitHub\ProjecVNE\JAVA_JSP_SERVLET\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\jsp_duanbsong" path="/jsp_duanbsong" reloadable="true" source="org.eclipse.jst.jee.server:jsp_duanbsong"/><Context docBase="D:\GitHub\ProjecVNE\JAVA_JSP_SERVLET\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\jspd6_baitap1" path="/jspd6_baitap1" reloadable="true" source="org.eclipse.jst.jee.server:jspd6_baitap1"/></Host>
+     <Host appBase="webapps" autoDeploy="true" name="bsong.vne" unpackWARs="true">
+		<Alias>bsong.vne</Alias>
+		<Context debug="0" docBase="D:\GitHub\ProjecVNE\JAVA_JSP_SERVLET\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\jsp_duanbsong\GiaoDien" path="" relaodable="true"/>
+	</Host>
     </Engine>
   </Service>
 </Server>

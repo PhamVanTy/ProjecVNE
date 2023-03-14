@@ -3,8 +3,17 @@
         "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
 <urlrewrite>
 	<rule>
-		<from>/trang-chu</from>
-		<to type="redirect">%{context-path}/public</to>
+		<from>/(.+)/page-([0-9]+).html$</from>
+		<to>/public?index=$2</to>
 	</rule>
+	<rule>
+		<from>/(.+)-([0-9]+).html$</from>
+		<to>/detail?id=$2</to>
+	</rule>
+	<rule>
+		<from>/(.+)-([0-9]+).html$</from>
+		<to>/cats?id=$2</to>
+	</rule>
+	
 </urlrewrite>
 

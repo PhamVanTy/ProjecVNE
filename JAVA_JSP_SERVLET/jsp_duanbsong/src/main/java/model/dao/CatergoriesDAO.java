@@ -35,7 +35,7 @@ public class CatergoriesDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				rs.close();
+
 				st.close();
 				conn.close();
 			} catch (SQLException e) {
