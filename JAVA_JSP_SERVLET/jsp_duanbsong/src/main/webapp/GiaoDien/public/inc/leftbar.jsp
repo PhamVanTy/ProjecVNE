@@ -1,3 +1,4 @@
+<%@page import="util.StringUtil"%>
 <%@page import="model.bean.Songs"%>
 <%@page import="model.dao.SongsDAO"%>
 <%@page import="model.bean.Categories"%>
@@ -8,7 +9,7 @@
 <div class="searchform">
   <form id="formsearch" name="formsearch" method="get" action="<%=request.getContextPath()%>/search">
     <span>
-    <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="" type="text" placeholder="Tìm kiếm bài hát" />
+    <input name="name_search" class="editbox_search" id="editbox_search" maxlength="80" value="" type="text" placeholder="Tìm kiếm bài hát" />
     </span>
     <input  name="button_search" src="<%=request.getContextPath()%>/GiaoDien/public/images/search.jpg" class="button_search" type="image" />
   </form>
@@ -27,7 +28,7 @@
 	}
 	  for(Categories objCat : listCat){		  
   %>
-    <li class="<%=temp==objCat.getIdCat() ? "active":""%>"><a href="<%=request.getContextPath()%>/cats?id=<%=objCat.getIdCat()%>"><%=objCat.getCatName()%></a></li>
+    <li class="<%=temp==objCat.getIdCat() ? "active":""%>"><a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCat.getCatName())%>-<%=objCat.getIdCat()%>.html"><%=objCat.getCatName()%></a></li>
     <%} %>
   </ul>
 </div>
@@ -38,10 +39,12 @@
   <ul class="ex_menu">
   <%
   	SongsDAO songDao = new SongsDAO(); 
+  
   	ArrayList<Songs> listNewSong = songDao.getNewItems();
   	for(Songs objNewSong : listNewSong){
+  		Categories objCatNew = catDao.getCatByID(objNewSong.getId_cat());
   %>
-    <li><a href="<%=request.getContextPath()%>/detail?id=<%=objNewSong.getIdSong()%>"><%=objNewSong.getSongName()%></a><br />
+    <li><a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCatNew.getCatName())%>/<%=StringUtil.makeSlug(objNewSong.getSongName())%>-<%=objNewSong.getIdSong()%>.html"><%=objNewSong.getSongName()%></a><br />
       <%if(objNewSong.getPreview_text().length() > 50) out.print(objNewSong.getPreview_text().substring(0, 50) + "..."); else out.print(objNewSong.getPreview_text());%></li>
     <%} %>
   </ul>

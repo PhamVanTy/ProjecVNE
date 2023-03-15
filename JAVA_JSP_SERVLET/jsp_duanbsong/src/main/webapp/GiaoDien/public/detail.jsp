@@ -20,9 +20,11 @@
       <div class="clr"></div>
 <%
 	Songs objS = (Songs)request.getAttribute("objS");
+	CatergoriesDAO dao = new CatergoriesDAO();
+	Categories objC = dao.getCatByID(objS.getId_cat());
 %>
-      <div class="comment"> <a href="<%=request.getContextPath()%>/detail?id=<%=objS.getIdSong()%>"><img src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=objS.getPicture()%>" width="40" height="40" alt="" class="userpic" /></a>
-        <h2><a href="<%=request.getContextPath()%>/detail?id=<%=objS.getIdSong()%>"><%=objS.getSongName()%></a></h2>
+      <div class="comment"> <a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objC.getCatName())%>/<%=StringUtil.makeSlug(objS.getSongName())%>-<%=objS.getIdSong() %>.html"><img src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=objS.getPicture()%>" width="40" height="40" alt="" class="userpic" /></a>
+        <h2><a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objC.getCatName())%>/<%=StringUtil.makeSlug(objS.getSongName())%>-<%=objS.getIdSong() %>.html"><%=objS.getSongName()%></a></h2>
         <p><%=objS.getPreview_text()%></p>
       </div>
     </div>  

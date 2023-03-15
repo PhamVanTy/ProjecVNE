@@ -24,7 +24,7 @@
       <div class="menu_nav">
         <ul class="menu_active">
           <li><a href="<%=request.getContextPath()%>/public"><span>Trang chủ</span></a>
-          <li><a href="<%=request.getContextPath()%>/contact"><span>Liên hệ</span></a></li>
+          <li><a href="<%=request.getContextPath()%>/lien-he"><span>Liên hệ</span></a></li>
         </ul>
       </div>
       <div class="clr"></div>

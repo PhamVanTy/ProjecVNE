@@ -26,22 +26,22 @@ public class PublicSearchSongController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String editbox_search = request.getParameter("editbox_search");
-			int total = dao.getTotalSearchByName(editbox_search);			
+			String name_search = request.getParameter("name_search");
+			int total = dao.getTotalSearchByName(name_search);			
 			int endPage = 0;
 			endPage = (int) Math.ceil((float)total / DefineUtil.NUMBER_PER_PAGE);
 			int index = 1;	
 			try {
-				index = Integer.parseInt(request.getParameter("indexSearch"));	
+				index = Integer.parseInt(request.getParameter("index"));	
 			} catch (NumberFormatException e) {
 			}	
 			int offset = (index - 1) * DefineUtil.NUMBER_PER_PAGE;
-			ArrayList<Songs> list = dao.pagingSongByName(editbox_search, offset);
+			ArrayList<Songs> list = dao.pagingSongByName(name_search, offset);
 			request.setAttribute("listSearch", list); 
 			request.setAttribute("totalSearch", total);
 			request.setAttribute("endPageSearch", endPage);
 			request.setAttribute("indexSearch", index);	
-			request.setAttribute("editbox_search", editbox_search);	
+			request.setAttribute("name_search", name_search);	
 			RequestDispatcher rd = request.getRequestDispatcher("/GiaoDien/public/indexSearch.jsp");
 			rd.forward(request, response);
 			return;

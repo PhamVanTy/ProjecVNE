@@ -3,17 +3,24 @@
         "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
 <urlrewrite>
 	<rule>
-		<from>/(.+)/page-([0-9]+).html$</from>
-		<to>/public?index=$2</to>
+		<from>/page/([0-9]+)$</from>
+		<to>/public?index=$1</to>
 	</rule>
 	<rule>
-		<from>/(.+)-([0-9]+).html$</from>
-		<to>/detail?id=$2</to>
+		<from>/(.+)/(.+)-([0-9]+).html$</from>
+		<to>/detail?id=$3</to>
+	</rule>
+	<rule>
+		<from>/(.+)-([0-9]+)/page-([0-9]+)$</from>
+		<to>/cats?id=$2&amp;index=$3</to>
 	</rule>
 	<rule>
 		<from>/(.+)-([0-9]+).html$</from>
 		<to>/cats?id=$2</to>
 	</rule>
-	
+	<rule>
+		<from>/lien-he$</from>
+		<to>/contact</to>
+	</rule>
 </urlrewrite>
 

@@ -1,3 +1,4 @@
+<%@page import="util.StringUtil"%>
 <%@page import="model.bean.Songs"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
@@ -15,20 +16,23 @@
 		<h1><%=objCatByID.getCatName()%></h1>
     </div>
     <%
+    
     ArrayList<Songs> listSongByCat = (ArrayList) request.getAttribute("listSongByIDInPage");
     if(listSongByCat != null && listSongByCat.size() > 0){
     	int i =0;
    		 for(Songs obj : listSongByCat){
+			
+			
    			 i++;
     %>
     <div class="article">
-      <h2><a href="<%=request.getContextPath()%>/detail?id=<%=obj.getIdSong()%>" title="<%=obj.getSongName()%>"><%=obj.getSongName()%></a></h2>
-      <p class="infopost">Ngày đăng: <%=obj.getDate_create() %>. Lượt xem: <%=obj.getCounter()%> <a href="<%=request.getContextPath()%>/detail?id=<%=obj.getIdSong()%>" class="com"><span><%=i%></span></a></p>
+      <h2><a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCatByID.getCatName())%>/<%=StringUtil.makeSlug(obj.getSongName())%>-<%=obj.getIdSong()%>.html" title="<%=obj.getSongName()%>"><%=obj.getSongName()%></a></h2>
+      <p class="infopost">Ngày đăng: <%=obj.getDate_create() %>. Lượt xem: <%=obj.getCounter()%> <a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCatByID.getCatName())%>/<%=StringUtil.makeSlug(obj.getSongName())%>-<%=obj.getIdSong()%>.html" class="com"><span><%=i%></span></a></p>
       <div class="clr"></div>
       <div class="img"><img src="<%=request.getContextPath()%>/GiaoDien/admin/assets/img/<%=obj.getPicture()%>" width="177" height="213" alt="<%=obj.getSongName()%>" class="fl" /></div>
       <div class="post_content">
         <p><%=obj.getPreview_text()%></p>
-        <p class="spec"><a href="<%=request.getContextPath()%>/detail?id=<%=obj.getIdSong()%>" class="rm">Chi tiết &raquo;</a></p>
+        <p class="spec"><a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCatByID.getCatName())%>/<%=StringUtil.makeSlug(obj.getSongName())%>-<%=obj.getIdSong() %>.html" class="rm">Chi tiết &raquo;</a></p>
       </div>
       <div class="clr"></div>
     </div>
@@ -46,9 +50,9 @@
     <p class="pages"><small>Trang <%=index%> của <%=endPage%></small>
    <%	
 	for(int i = 1; i <= endPage; i++){      %>
-		<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/cats?id=<%=objCatByID.getIdCat()%>&index=<%=i%>"><%=i%></a> 
+		<a class="<%=index==i?"active":""%>" href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCatByID.getCatName())%>-<%=objCatByID.getIdCat()%>/page-<%=i%>"><%=i%></a> 
 	<%}%>
-    <a href="<%=request.getContextPath()%>/cats?index=<%=index < endPage ? (index+1) : endPage%>&id=<%=objCatByID.getIdCat()%>">&raquo;</a></p>
+    <a href="<%=request.getContextPath()%>/<%=StringUtil.makeSlug(objCatByID.getCatName())%>-<%=objCatByID.getIdCat()%>/page-<%=index < endPage ? (index+1) : endPage%>">&raquo;</a></p>
   <%} %>
   </div>
   <div class="sidebar">
